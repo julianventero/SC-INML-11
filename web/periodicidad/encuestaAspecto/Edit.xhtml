@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EncuestaAspectoEditDlg" widgetVar="EncuestaAspectoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEncuestaAspectoTitle}">
+            <h:form id="EncuestaAspectoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{encuestaAspectoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEncuestaAspectoLabel_idENCUESTAASPECTO}" for="idENCUESTAASPECTO" />
+                        <p:inputText id="idENCUESTAASPECTO" value="#{encuestaAspectoController.selected.idENCUESTAASPECTO}" title="#{bundle.EditEncuestaAspectoTitle_idENCUESTAASPECTO}" required="true" requiredMessage="#{bundle.EditEncuestaAspectoRequiredMessage_idENCUESTAASPECTO}"/>
+                        <p:outputLabel value="#{bundle.EditEncuestaAspectoLabel_ASPECTOidASPECTO}" for="ASPECTOidASPECTO" />
+                        <p:selectOneMenu id="ASPECTOidASPECTO" value="#{encuestaAspectoController.selected.ASPECTOidASPECTO}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{aspectoController.itemsAvailableSelectOne}"
+                                           var="ASPECTOidASPECTOItem"
+                                           itemValue="#{ASPECTOidASPECTOItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEncuestaAspectoLabel_ENCUESTAidENCUESTA}" for="ENCUESTAidENCUESTA" />
+                        <p:selectOneMenu id="ENCUESTAidENCUESTA" value="#{encuestaAspectoController.selected.ENCUESTAidENCUESTA}" required="true" requiredMessage="#{bundle.EditEncuestaAspectoRequiredMessage_ENCUESTAidENCUESTA}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{encuestaController.itemsAvailableSelectOne}"
+                                           var="ENCUESTAidENCUESTAItem"
+                                           itemValue="#{ENCUESTAidENCUESTAItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{encuestaAspectoController.update}" value="#{bundle.Save}" update="display,:EncuestaAspectoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EncuestaAspectoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EncuestaAspectoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

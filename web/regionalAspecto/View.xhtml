@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegionalAspectoViewDlg" widgetVar="RegionalAspectoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRegionalAspectoTitle}">
+            <h:form id="RegionalAspectoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{regionalAspectoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRegionalAspectoLabel_idREGIONALASPECTO}"/>
+                        <h:outputText value="#{regionalAspectoController.selected.idREGIONALASPECTO}" title="#{bundle.ViewRegionalAspectoTitle_idREGIONALASPECTO}"/>
+                        <h:outputText value="#{bundle.ViewRegionalAspectoLabel_ASPECTOidASPECTO}"/>
+                        <h:outputText value="#{regionalAspectoController.selected.ASPECTOidASPECTO}" title="#{bundle.ViewRegionalAspectoTitle_ASPECTOidASPECTO}"/>
+                        <h:outputText value="#{bundle.ViewRegionalAspectoLabel_REGIONALidREGIONAL}"/>
+                        <h:outputText value="#{regionalAspectoController.selected.REGIONALidREGIONAL}" title="#{bundle.ViewRegionalAspectoTitle_REGIONALidREGIONAL}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RegionalAspectoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EncuestaCreateDlg" widgetVar="EncuestaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEncuestaTitle}">
+            <h:form id="EncuestaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{encuestaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_idENCUESTA}" for="idENCUESTA" />
+                        <p:inputText id="idENCUESTA" value="#{encuestaController.selected.idENCUESTA}" title="#{bundle.CreateEncuestaTitle_idENCUESTA}" required="true" requiredMessage="#{bundle.CreateEncuestaRequiredMessage_idENCUESTA}"/>
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_numeroEncuesta}" for="numeroEncuesta" />
+                        <p:inputText id="numeroEncuesta" value="#{encuestaController.selected.numeroEncuesta}" title="#{bundle.CreateEncuestaTitle_numeroEncuesta}" />
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_fechaRealizacion}" for="fechaRealizacion" />
+                        <p:calendar id="fechaRealizacion" pattern="MM/dd/yyyy" value="#{encuestaController.selected.fechaRealizacion}" title="#{bundle.EditEncuestaTitle_fechaRealizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_MUESTRAidMUESTRA}" for="MUESTRAidMUESTRA" />
+                        <p:selectOneMenu id="MUESTRAidMUESTRA" value="#{encuestaController.selected.MUESTRAidMUESTRA}" required="true" requiredMessage="#{bundle.EditEncuestaRequiredMessage_MUESTRAidMUESTRA}">
+                            <f:selectItems value="#{muestraController.itemsAvailableSelectOne}"
+                                           var="MUESTRAidMUESTRAItem"
+                                           itemValue="#{MUESTRAidMUESTRAItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_MUNICIPIOidMUNICIPIO}" for="MUNICIPIOidMUNICIPIO" />
+                        <p:selectOneMenu id="MUNICIPIOidMUNICIPIO" value="#{encuestaController.selected.MUNICIPIOidMUNICIPIO}" required="true" requiredMessage="#{bundle.EditEncuestaRequiredMessage_MUNICIPIOidMUNICIPIO}">
+                            <f:selectItems value="#{municipioController.itemsAvailableSelectOne}"
+                                           var="MUNICIPIOidMUNICIPIOItem"
+                                           itemValue="#{MUNICIPIOidMUNICIPIOItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_PERIODICIDADidPERIODICIDAD}" for="PERIODICIDADidPERIODICIDAD" />
+                        <p:selectOneMenu id="PERIODICIDADidPERIODICIDAD" value="#{encuestaController.selected.PERIODICIDADidPERIODICIDAD}" required="true" requiredMessage="#{bundle.EditEncuestaRequiredMessage_PERIODICIDADidPERIODICIDAD}">
+                            <f:selectItems value="#{periodicidadController.itemsAvailableSelectOne}"
+                                           var="PERIODICIDADidPERIODICIDADItem"
+                                           itemValue="#{PERIODICIDADidPERIODICIDADItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEncuestaLabel_USUARIOcedula}" for="USUARIOcedula" />
+                        <p:selectOneMenu id="USUARIOcedula" value="#{encuestaController.selected.USUARIOcedula}" required="true" requiredMessage="#{bundle.EditEncuestaRequiredMessage_USUARIOcedula}">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="USUARIOcedulaItem"
+                                           itemValue="#{USUARIOcedulaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{encuestaController.create}" value="#{bundle.Save}" update="display,:EncuestaListForm:datalist,:growl" oncomplete="handleSubmit(args,'EncuestaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EncuestaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

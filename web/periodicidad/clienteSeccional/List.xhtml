@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListClienteSeccionalTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ClienteSeccionalListForm">
+                <p:panel header="#{bundle.ListClienteSeccionalTitle}">
+                    <p:dataTable id="datalist" value="#{clienteSeccionalController.items}" var="item"
+                                 selectionMode="single" selection="#{clienteSeccionalController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idCLIENTESECCIONAL}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteSeccionalTitle_idCLIENTESECCIONAL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCLIENTESECCIONAL}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteSeccionalTitle_CLIENTEidCLIENTE}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.CLIENTEidCLIENTE}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteSeccionalTitle_SECCIONALidSECCIONAL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.SECCIONALidSECCIONAL}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteSeccionalController.prepareCreate}" update=":ClienteSeccionalCreateForm" oncomplete="PF('ClienteSeccionalCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteSeccionalViewForm" oncomplete="PF('ClienteSeccionalViewDialog').show()" disabled="#{empty clienteSeccionalController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ClienteSeccionalEditForm" oncomplete="PF('ClienteSeccionalEditDialog').show()" disabled="#{empty clienteSeccionalController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteSeccionalController.destroy}" update=":growl,datalist" disabled="#{empty clienteSeccionalController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

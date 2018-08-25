@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeriodicidadEditDlg" widgetVar="PeriodicidadEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPeriodicidadTitle}">
+            <h:form id="PeriodicidadEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{periodicidadController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPeriodicidadLabel_idPERIODICIDAD}" for="idPERIODICIDAD" />
+                        <p:inputText id="idPERIODICIDAD" value="#{periodicidadController.selected.idPERIODICIDAD}" title="#{bundle.EditPeriodicidadTitle_idPERIODICIDAD}" required="true" requiredMessage="#{bundle.EditPeriodicidadRequiredMessage_idPERIODICIDAD}"/>
+                        <p:outputLabel value="#{bundle.EditPeriodicidadLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{periodicidadController.selected.fechaInicio}" title="#{bundle.EditPeriodicidadTitle_fechaInicio}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPeriodicidadLabel_fechaFin}" for="fechaFin" />
+                        <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{periodicidadController.selected.fechaFin}" title="#{bundle.EditPeriodicidadTitle_fechaFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPeriodicidadLabel_ESTADOidESTADO}" for="ESTADOidESTADO" />
+                        <p:selectOneMenu id="ESTADOidESTADO" value="#{periodicidadController.selected.ESTADOidESTADO}" required="true" requiredMessage="#{bundle.EditPeriodicidadRequiredMessage_ESTADOidESTADO}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoPController.itemsAvailableSelectOne}"
+                                           var="ESTADOidESTADOItem"
+                                           itemValue="#{ESTADOidESTADOItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{periodicidadController.update}" value="#{bundle.Save}" update="display,:PeriodicidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeriodicidadEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PeriodicidadEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

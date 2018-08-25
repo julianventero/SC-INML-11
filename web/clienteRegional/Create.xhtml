@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteRegionalCreateDlg" widgetVar="ClienteRegionalCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClienteRegionalTitle}">
+            <h:form id="ClienteRegionalCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteRegionalController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateClienteRegionalLabel_idCLIENTEREGIONAL}" for="idCLIENTEREGIONAL" />
+                        <p:inputText id="idCLIENTEREGIONAL" value="#{clienteRegionalController.selected.idCLIENTEREGIONAL}" title="#{bundle.CreateClienteRegionalTitle_idCLIENTEREGIONAL}" required="true" requiredMessage="#{bundle.CreateClienteRegionalRequiredMessage_idCLIENTEREGIONAL}"/>
+                        <p:outputLabel value="#{bundle.CreateClienteRegionalLabel_CLIENTEidCLIENTE}" for="CLIENTEidCLIENTE" />
+                        <p:selectOneMenu id="CLIENTEidCLIENTE" value="#{clienteRegionalController.selected.CLIENTEidCLIENTE}" required="true" requiredMessage="#{bundle.EditClienteRegionalRequiredMessage_CLIENTEidCLIENTE}">
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="CLIENTEidCLIENTEItem"
+                                           itemValue="#{CLIENTEidCLIENTEItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateClienteRegionalLabel_REGIONALidREGIONAL}" for="REGIONALidREGIONAL" />
+                        <p:selectOneMenu id="REGIONALidREGIONAL" value="#{clienteRegionalController.selected.REGIONALidREGIONAL}" required="true" requiredMessage="#{bundle.EditClienteRegionalRequiredMessage_REGIONALidREGIONAL}">
+                            <f:selectItems value="#{regionalController.itemsAvailableSelectOne}"
+                                           var="REGIONALidREGIONALItem"
+                                           itemValue="#{REGIONALidREGIONALItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteRegionalController.create}" value="#{bundle.Save}" update="display,:ClienteRegionalListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteRegionalCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteRegionalCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

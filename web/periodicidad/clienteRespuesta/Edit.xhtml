@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteRespuestaEditDlg" widgetVar="ClienteRespuestaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditClienteRespuestaTitle}">
+            <h:form id="ClienteRespuestaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteRespuestaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditClienteRespuestaLabel_idCLIENTERESPUESTA}" for="idCLIENTERESPUESTA" />
+                        <p:inputText id="idCLIENTERESPUESTA" value="#{clienteRespuestaController.selected.idCLIENTERESPUESTA}" title="#{bundle.EditClienteRespuestaTitle_idCLIENTERESPUESTA}" required="true" requiredMessage="#{bundle.EditClienteRespuestaRequiredMessage_idCLIENTERESPUESTA}"/>
+                        <p:outputLabel value="#{bundle.EditClienteRespuestaLabel_CLIENTEidCLIENTE}" for="CLIENTEidCLIENTE" />
+                        <p:selectOneMenu id="CLIENTEidCLIENTE" value="#{clienteRespuestaController.selected.CLIENTEidCLIENTE}" required="true" requiredMessage="#{bundle.EditClienteRespuestaRequiredMessage_CLIENTEidCLIENTE}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="CLIENTEidCLIENTEItem"
+                                           itemValue="#{CLIENTEidCLIENTEItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditClienteRespuestaLabel_RESPUESTAidRESPUESTA}" for="RESPUESTAidRESPUESTA" />
+                        <p:selectOneMenu id="RESPUESTAidRESPUESTA" value="#{clienteRespuestaController.selected.RESPUESTAidRESPUESTA}" required="true" requiredMessage="#{bundle.EditClienteRespuestaRequiredMessage_RESPUESTAidRESPUESTA}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{respuestaController.itemsAvailableSelectOne}"
+                                           var="RESPUESTAidRESPUESTAItem"
+                                           itemValue="#{RESPUESTAidRESPUESTAItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteRespuestaController.update}" value="#{bundle.Save}" update="display,:ClienteRespuestaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteRespuestaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteRespuestaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
