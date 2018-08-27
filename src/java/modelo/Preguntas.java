@@ -136,7 +136,7 @@ public class Preguntas implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Preguntas[ idPREGUNTAS=" + idPREGUNTAS + " ]";
+        return pregunta;
     }
     
 }

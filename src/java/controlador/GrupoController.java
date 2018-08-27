@@ -56,7 +56,7 @@ public class GrupoController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("reated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("Created"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }

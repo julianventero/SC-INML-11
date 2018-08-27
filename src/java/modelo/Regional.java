@@ -134,7 +134,7 @@ public class Regional implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Regional[ idREGIONAL=" + idREGIONAL + " ]";
+        return nombre;
     }
     
 }

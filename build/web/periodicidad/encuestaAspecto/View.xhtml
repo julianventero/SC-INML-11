@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EncuestaAspectoViewDlg" widgetVar="EncuestaAspectoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEncuestaAspectoTitle}">
+            <h:form id="EncuestaAspectoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{encuestaAspectoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEncuestaAspectoLabel_idENCUESTAASPECTO}"/>
+                        <h:outputText value="#{encuestaAspectoController.selected.idENCUESTAASPECTO}" title="#{bundle.ViewEncuestaAspectoTitle_idENCUESTAASPECTO}"/>
+                        <h:outputText value="#{bundle.ViewEncuestaAspectoLabel_ASPECTOidASPECTO}"/>
+                        <h:outputText value="#{encuestaAspectoController.selected.ASPECTOidASPECTO}" title="#{bundle.ViewEncuestaAspectoTitle_ASPECTOidASPECTO}"/>
+                        <h:outputText value="#{bundle.ViewEncuestaAspectoLabel_ENCUESTAidENCUESTA}"/>
+                        <h:outputText value="#{encuestaAspectoController.selected.ENCUESTAidENCUESTA}" title="#{bundle.ViewEncuestaAspectoTitle_ENCUESTAidENCUESTA}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EncuestaAspectoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -147,7 +147,7 @@ public class Aspecto implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Aspecto[ idASPECTO=" + idASPECTO + " ]";
+        return nombre;
     }
     
 }

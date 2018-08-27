@@ -101,7 +101,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Rol[ idROL=" + idROL + " ]";
+        return nombre;
     }
     
 }

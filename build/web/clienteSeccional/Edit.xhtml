@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteSeccionalEditDlg" widgetVar="ClienteSeccionalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditClienteSeccionalTitle}">
+            <h:form id="ClienteSeccionalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteSeccionalController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditClienteSeccionalLabel_idCLIENTESECCIONAL}" for="idCLIENTESECCIONAL" />
+                        <p:inputText id="idCLIENTESECCIONAL" value="#{clienteSeccionalController.selected.idCLIENTESECCIONAL}" title="#{bundle.EditClienteSeccionalTitle_idCLIENTESECCIONAL}" required="true" requiredMessage="#{bundle.EditClienteSeccionalRequiredMessage_idCLIENTESECCIONAL}"/>
+                        <p:outputLabel value="#{bundle.EditClienteSeccionalLabel_CLIENTEidCLIENTE}" for="CLIENTEidCLIENTE" />
+                        <p:selectOneMenu id="CLIENTEidCLIENTE" value="#{clienteSeccionalController.selected.CLIENTEidCLIENTE}" required="true" requiredMessage="#{bundle.EditClienteSeccionalRequiredMessage_CLIENTEidCLIENTE}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="CLIENTEidCLIENTEItem"
+                                           itemValue="#{CLIENTEidCLIENTEItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditClienteSeccionalLabel_SECCIONALidSECCIONAL}" for="SECCIONALidSECCIONAL" />
+                        <p:selectOneMenu id="SECCIONALidSECCIONAL" value="#{clienteSeccionalController.selected.SECCIONALidSECCIONAL}" required="true" requiredMessage="#{bundle.EditClienteSeccionalRequiredMessage_SECCIONALidSECCIONAL}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{seccionalController.itemsAvailableSelectOne}"
+                                           var="SECCIONALidSECCIONALItem"
+                                           itemValue="#{SECCIONALidSECCIONALItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteSeccionalController.update}" value="#{bundle.Save}" update="display,:ClienteSeccionalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteSeccionalEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteSeccionalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

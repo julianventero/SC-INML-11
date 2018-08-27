@@ -120,7 +120,7 @@ public class Grupo implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Grupo[ idGRUPO=" + idGRUPO + " ]";
+        return nombre;
     }
     
 }

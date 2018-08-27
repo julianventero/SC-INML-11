@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SeccionalCriterioViewDlg" widgetVar="SeccionalCriterioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSeccionalCriterioTitle}">
+            <h:form id="SeccionalCriterioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{seccionalCriterioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSeccionalCriterioLabel_idSECCIONALCRITERIO}"/>
+                        <h:outputText value="#{seccionalCriterioController.selected.idSECCIONALCRITERIO}" title="#{bundle.ViewSeccionalCriterioTitle_idSECCIONALCRITERIO}"/>
+                        <h:outputText value="#{bundle.ViewSeccionalCriterioLabel_CRITERIOidCRITERIO}"/>
+                        <h:outputText value="#{seccionalCriterioController.selected.CRITERIOidCRITERIO}" title="#{bundle.ViewSeccionalCriterioTitle_CRITERIOidCRITERIO}"/>
+                        <h:outputText value="#{bundle.ViewSeccionalCriterioLabel_SECCIONALidSECCIONAL}"/>
+                        <h:outputText value="#{seccionalCriterioController.selected.SECCIONALidSECCIONAL}" title="#{bundle.ViewSeccionalCriterioTitle_SECCIONALidSECCIONAL}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SeccionalCriterioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

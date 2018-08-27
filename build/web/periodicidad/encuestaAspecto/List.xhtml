@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEncuestaAspectoTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="EncuestaAspectoListForm">
+                <p:panel header="#{bundle.ListEncuestaAspectoTitle}">
+                    <p:dataTable id="datalist" value="#{encuestaAspectoController.items}" var="item"
+                                 selectionMode="single" selection="#{encuestaAspectoController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idENCUESTAASPECTO}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEncuestaAspectoTitle_idENCUESTAASPECTO}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idENCUESTAASPECTO}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEncuestaAspectoTitle_ASPECTOidASPECTO}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ASPECTOidASPECTO}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEncuestaAspectoTitle_ENCUESTAidENCUESTA}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ENCUESTAidENCUESTA}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{encuestaAspectoController.prepareCreate}" update=":EncuestaAspectoCreateForm" oncomplete="PF('EncuestaAspectoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EncuestaAspectoViewForm" oncomplete="PF('EncuestaAspectoViewDialog').show()" disabled="#{empty encuestaAspectoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EncuestaAspectoEditForm" oncomplete="PF('EncuestaAspectoEditDialog').show()" disabled="#{empty encuestaAspectoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{encuestaAspectoController.destroy}" update=":growl,datalist" disabled="#{empty encuestaAspectoController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

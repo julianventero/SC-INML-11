@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EncuestaCriterioViewDlg" widgetVar="EncuestaCriterioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEncuestaCriterioTitle}">
+            <h:form id="EncuestaCriterioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{encuestaCriterioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEncuestaCriterioLabel_idENCUESTACRITERIO}"/>
+                        <h:outputText value="#{encuestaCriterioController.selected.idENCUESTACRITERIO}" title="#{bundle.ViewEncuestaCriterioTitle_idENCUESTACRITERIO}"/>
+                        <h:outputText value="#{bundle.ViewEncuestaCriterioLabel_CRITERIOidCRITERIO}"/>
+                        <h:outputText value="#{encuestaCriterioController.selected.CRITERIOidCRITERIO}" title="#{bundle.ViewEncuestaCriterioTitle_CRITERIOidCRITERIO}"/>
+                        <h:outputText value="#{bundle.ViewEncuestaCriterioLabel_ENCUESTAidENCUESTA}"/>
+                        <h:outputText value="#{encuestaCriterioController.selected.ENCUESTAidENCUESTA}" title="#{bundle.ViewEncuestaCriterioTitle_ENCUESTAidENCUESTA}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EncuestaCriterioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -101,7 +101,7 @@ public class EstadoU implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.EstadoU[ idESTADO=" + idESTADO + " ]";
+        return nombre;
     }
     
 }
